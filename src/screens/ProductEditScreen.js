@@ -74,14 +74,14 @@ export default function ProductEditScreen(props) {
     bodyFormData.append('image', file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('https://cricify.onrender.com/api/uploads', bodyFormData, {
+      const { data } = await Axios.post('https://cricify.onrender.com/api/uploads/s3', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userInfo.token}`,
         },
       });
       //console.log(data);
-      setImage(data);
+      setImage(data["Location"]);
       setLoadingUpload(false);
     } catch (error) {
       setErrorUpload(error.message);
